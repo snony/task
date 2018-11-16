@@ -1,10 +1,18 @@
 import { updateCompanyQuoteThunk } from './companyQuote'
-const feedMiddleware = (socketAPI) => ({ dispatch, getState }) => {
-    socketAPI.onChange((data) => dispatch(updateCompanyQuoteThunk(data)))
+const feedMiddleware = (feedAPI) => ({ dispatch, getState }) => {
+    feedAPI.onChange((data) => dispatch(updateCompanyQuoteThunk(data)))
     return next => action => {
-        //TODO change this one
+        //TODO remove this one
         if (typeof action === 'function') {
-            return action(dispatch, getState, socketAPI)
+            return action(dispatch, getState, feedAPI)
+        }
+        if (action.type === 'SYMBOL_SUBSCRIBE') {
+            console.log("susbcribe")
+
+        }
+
+        if (action.type === 'SYMBOL_UNSUBSCRIBE') {
+            console.log("unsubscribe")
         }
         return next(action)
     }
