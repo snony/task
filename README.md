@@ -3,6 +3,3 @@
 ```
 npm install
 npm start
-```
-
-Instructions are on screen.
