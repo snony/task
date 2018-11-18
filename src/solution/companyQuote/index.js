@@ -1,6 +1,6 @@
 import CompanyQuoteContainer from './CompanyQuote.container'
 import companyQuoteReducer from './reducers'
-import { updateCompanyQuoteThunk } from './actions'
-export { companyQuoteReducer, updateCompanyQuoteThunk }
+import { updateCompanyQuote } from './actions'
+export { companyQuoteReducer, updateCompanyQuote}
 
 export default CompanyQuoteContainer

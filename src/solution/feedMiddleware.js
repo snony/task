@@ -1,20 +1,25 @@
-import { updateCompanyQuoteThunk } from './companyQuote'
+import { updateCompanyQuote } from './companyQuote'
 const feedMiddleware = (feedAPI) => ({ dispatch, getState }) => {
-    feedAPI.onChange((data) => dispatch(updateCompanyQuoteThunk(data)))
+    feedAPI.onChange(callBack(dispatch, getState))
     return next => action => {
-        //TODO remove this one
-        if (typeof action === 'function') {
-            return action(dispatch, getState, feedAPI)
-        }
         if (action.type === 'SYMBOL_SUBSCRIBE') {
-            console.log("susbcribe")
-
+            feedAPI.subscribe(action.symbol)
         }
-
+        
         if (action.type === 'SYMBOL_UNSUBSCRIBE') {
-            console.log("unsubscribe")
+            feedAPI.unsubscribe(action.symbol)
         }
         return next(action)
+    }
+}
+    
+const callBack = (dispatch,getState) =>{
+    return (data) =>{
+        const { symbolsSubscriber: { subscribedSymbols } } = getState()
+        if (data.symbol in subscribedSymbols) {
+            dispatch(updateCompanyQuote(data))
+            return dispatch(updateCompanyQuote(data))
+        }   
     }
 }
 

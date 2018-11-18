@@ -1,6 +1,6 @@
 import symbolReducer from './reducers'
 import SymbolSelectContainer from './SymbolSelect.Container'
-import { unsubscribeSymbolThunk } from './actions'
-export { symbolReducer, unsubscribeSymbolThunk }
+import { unsubscibeSymbol } from './actions'
+export { symbolReducer, unsubscibeSymbol }
 
 export default SymbolSelectContainer

@@ -3,23 +3,8 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 
-const CompanyQuote = ({ onclick, quote }) => {
-    const { symbol, open, last, high, low, change } = quote
-    return (
-        <React.Fragment>
-            <td>{symbol}</td>
-            <td>{open}</td>
-            <td>{last}</td>
-            <td>{high}</td>
-            <td>{low}</td>
-            <td>{change}</td>
-            <td><button onClick={() => onclick(symbol)}>Unsubscribe</button></td>
-        </React.Fragment>
-    )
-}
 
 const columnDefs = [
-
     { headerName: 'Symbol', field: 'symbol' },
     { headerName: 'Open', field: 'open' },
     { headerName: 'Last', field: 'last' },
@@ -54,7 +39,7 @@ class CompaniesQuote extends React.PureComponent {
 
     unsubscribe = (symbol) => {
         this.props.unsubscribe(symbol)
-        this.props.removeCompany(symbol)
+        this.props.removeCompany(symbol)//TODO change name of function
     }
 
     render() {

@@ -11,14 +11,3 @@ export const unsubscibeSymbol = (symbol) => ({
     type: SYMBOL_UNSUBSCRIBE,
     symbol
 })
-
-
-export const subscribeSymbolThunk = symbol => (dispatch, _, feedAPI) => {
-    feedAPI.subscribe(symbol)
-    dispatch(subscribeSymbol(symbol))
-}
-
-export const unsubscribeSymbolThunk = symbol => (dispatch, _, feedAPI) => {
-    feedAPI.unsubscribe(symbol)
-    dispatch(unsubscibeSymbol(symbol))
-}
