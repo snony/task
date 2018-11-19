@@ -40,7 +40,7 @@ class CompaniesQuote extends React.PureComponent {
     unsubscribe = (symbol) => {
         const { unsubscribe, removeQuoteBySymbol } = this.props;
         unsubscribe(symbol)
-        removeQuoteBySymbol(symbol)//TODO change name of function
+        removeQuoteBySymbol(symbol)
     }
 
     render() {
