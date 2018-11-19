@@ -7,7 +7,7 @@ export const subscribeSymbol = (symbol) => ({
 
 
 export const SYMBOL_UNSUBSCRIBE = 'SYMBOL_UNSUBSCRIBE'
-export const unsubscibeSymbol = (symbol) => ({
+export const unsubscribeSymbol = (symbol) => ({
     type: SYMBOL_UNSUBSCRIBE,
     symbol
 })

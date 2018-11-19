@@ -10,7 +10,6 @@ import "./index.css";
 
 //setup the store
 const store = createStore(rootReducer, applyMiddleware(feedMiddleware(feedAPI)))
-
 class ErrorBoundary extends React.Component {
   constructor() {
     super();

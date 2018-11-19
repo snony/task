@@ -1,10 +1,13 @@
-import {SYMBOL_SUBSCRIBE, subscribeSymbol, SYMBOL_UNSUBSCRIBE, unsubscibeSymbol} from '../actions'
-describe('SymbolSelect actions',()=>{
-    it('',()=>{
-        expect(1).toBe(1)
+import { SYMBOL_SUBSCRIBE, subscribeSymbol, SYMBOL_UNSUBSCRIBE, unsubscribeSymbol } from '../actions'
+describe('SymbolSelect actions', () => {
+    const symbol = 'aapl'
+
+    it('subscribeSymbol should return SYMBOL_SUBSCRIBE action', () => {
+        const expectedAction = { type: SYMBOL_SUBSCRIBE, symbol }
+        expect(subscribeSymbol(symbol)).toEqual(expectedAction)
     })
 
-    it('', ()=>{
-        expect(1).toBe(1)
+    it('unsubscribeSymbol should return SYMBOL_UNSUBSCRIBE', () => {
+        expect(unsubscribeSymbol(symbol)).toEqual({ type: SYMBOL_UNSUBSCRIBE, symbol })
     })
 })

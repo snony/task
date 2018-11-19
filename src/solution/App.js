@@ -1,18 +1,18 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import SymbolSelectContainer from './symbolSelect'
 import CompanyQuoteContainer from './companyQuote'
 import "./app.css";
 
 
-class App extends React.Component {
+class App extends Component {
 
   render() {
 
     return (
-      <React.Fragment>
+      <Fragment>
         <SymbolSelectContainer />
         <CompanyQuoteContainer />
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

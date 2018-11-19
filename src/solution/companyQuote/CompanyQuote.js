@@ -5,18 +5,18 @@ import 'ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 
 
 const columnDefs = [
-    { headerName: 'Symbol', field: 'symbol' },
-    { headerName: 'Open', field: 'open' },
-    { headerName: 'Last', field: 'last' },
-    { headerName: 'High', field: 'high' },
-    { headerName: 'Low', field: 'low' },
+    { headerName: 'Symbol', field: 'symbol', width: 250 },
+    { headerName: 'Open', field: 'open', width: 250 },
+    { headerName: 'Last', field: 'last', width: 250 },
+    { headerName: 'High', field: 'high', width: 250 },
+    { headerName: 'Low', field: 'low', width: 250 },
     {
         headerName: 'Change', field: 'change', valueParser: parseInt, cellClassRules: {
             "cell-green": "x >=0",
             "cell-red": "x < 0"
         }
     },
-    { headerName: 'Action', cellRenderer: 'buttonCellRenderer', }//TODO should definitely change the name of this one
+    { headerName: 'Action', cellRenderer: 'buttonCellRenderer', width: 250 }
 ]
 
 class ButtonCellRenderer extends React.Component {
@@ -38,12 +38,13 @@ class CompaniesQuote extends React.PureComponent {
     }
 
     unsubscribe = (symbol) => {
-        this.props.unsubscribe(symbol)
-        this.props.removeCompany(symbol)//TODO change name of function
+        const { unsubscribe, removeQuoteBySymbol } = this.props;
+        unsubscribe(symbol)
+        removeQuoteBySymbol(symbol)//TODO change name of function
     }
 
     render() {
-        const { companiesData } = this.props.companiesData
+        const companiesData = this.props.companiesData
         return (
             <div className='grid_wrapper'>
                 <div style={{ height: '100%', width: '90%' }} className='ag-theme-balham-dark move'>

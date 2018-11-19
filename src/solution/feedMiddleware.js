@@ -1,26 +1,26 @@
 import { updateCompanyQuote } from './companyQuote'
+import { SYMBOL_SUBSCRIBE, SYMBOL_UNSUBSCRIBE } from './symbolSelect'
 const feedMiddleware = (feedAPI) => ({ dispatch, getState }) => {
-    feedAPI.onChange(callBack(dispatch, getState))
+
+    const onData = (data) => {
+
+        const { subscribedSymbols } = getState()
+        if (data.symbol in subscribedSymbols) {
+            return dispatch(updateCompanyQuote(data))
+        }
+    }
+
+    feedAPI.onChange(onData)
+
     return next => action => {
-        if (action.type === 'SYMBOL_SUBSCRIBE') {
+        if (action.type === SYMBOL_SUBSCRIBE) {
             feedAPI.subscribe(action.symbol)
         }
-        
-        if (action.type === 'SYMBOL_UNSUBSCRIBE') {
+
+        if (action.type === SYMBOL_UNSUBSCRIBE) {
             feedAPI.unsubscribe(action.symbol)
         }
         return next(action)
     }
 }
-    
-const callBack = (dispatch,getState) =>{
-    return (data) =>{
-        const { symbolsSubscriber: { subscribedSymbols } } = getState()
-        if (data.symbol in subscribedSymbols) {
-            dispatch(updateCompanyQuote(data))
-            return dispatch(updateCompanyQuote(data))
-        }   
-    }
-}
-
 export default feedMiddleware

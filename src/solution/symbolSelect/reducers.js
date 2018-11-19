@@ -1,21 +1,23 @@
 import { SYMBOL_SUBSCRIBE, SYMBOL_UNSUBSCRIBE } from './actions'
-const initState = {}
 
-const symbolReducer = (state = initState, action) => {
+const symbolSelectReducer = (state = {}, action) => {
     switch (action.type) {
         case SYMBOL_SUBSCRIBE:
             {
-                const subscribedSymbols = { ...state.subscribedSymbols, [action.symbol]: true }
-                return { ...state, subscribedSymbols }
+                return {
+                    ...state,
+                    ...state.subscribedSymbols,
+                    [action.symbol]: true
+                }
             }
         case SYMBOL_UNSUBSCRIBE:
             {
-                const subscribedSymbols = { ...state.subscribedSymbols }
-                delete subscribedSymbols[action.symbol]
-                return { ...state, subscribedSymbols }
+                const newState = { ...state, ...state.subscribedSymbols }
+                delete newState[action.symbol]
+                return newState
             }
         default: return state;
     }
 }
 
-export default symbolReducer
+export default symbolSelectReducer

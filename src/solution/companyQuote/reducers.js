@@ -1,15 +1,14 @@
 import { QUOTE_UPDATE, QUOTE_REMOVE } from './actions'
-const initState = {}
-const companyQuoteReducer = (state = initState, action) => {
+const companyQuoteReducer = (state = {}, action) => {
     switch (action.type) {
         case QUOTE_UPDATE: {
-            const companiesData = { ...state.companiesData, [action.quote.symbol]: action.quote }
-            return { ...state, companiesData }
+            const newState = { ...state, ...state.companyQuotes, [action.quote.symbol]: action.quote }
+            return newState
         }
         case QUOTE_REMOVE: {
-            const companiesData = { ...state.companiesData }
-            delete companiesData[action.symbol]
-            return { ...state, companiesData }
+            const newState = { ...state, ...state.companyQuotes }
+            delete newState[action.symbol]
+            return newState
         }
         default: return state
     }
